@@ -190,8 +190,8 @@ class RabbitConsumer:
         # Собираем данные для отправки
         batch_data = [[]]
         for item in self._login_message_batch:
-            message = item['message']
-            login = message['key'][6:]  # Убираем префикс "login:"
+            message = item.get('message')
+            login = message.get('key')[6:]  # Убираем префикс "login:"
             value = message.get('value', {})
             batch_data[0].append({
                 'login': login,
@@ -201,9 +201,11 @@ class RabbitConsumer:
 
         headers = {'Content-Type': 'application/json'}
 
+        if not batch_data:
+            logging.info(f"Batch sent and acknowledged successfully: {self._login_message_batch} items")
         try:
             response = requests.post(
-                'http://192.168.111.151:8080/v1/addresses',
+                'http://localhost:8080/v1/addresses',
                 json=batch_data,
                 headers=headers
             )
