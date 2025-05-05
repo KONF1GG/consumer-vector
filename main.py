@@ -205,7 +205,7 @@ class RabbitConsumer:
             logging.info(f"Batch sent and acknowledged successfully: {self._login_message_batch} items")
         try:
             response = requests.post(
-                'http://localhost:8080/v1/addresses',
+                'http://192.168.111.151:8080/v1/addresses',
                 json=batch_data,
                 headers=headers
             )
