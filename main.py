@@ -204,7 +204,8 @@ class RabbitConsumer:
         if not batch_data:
             logging.info(f"Batch sent and acknowledged successfully: {self._login_message_batch} items")
         try:
-            logging.warning(f"Batch sent and acknowledged successfully: {len(batch_data)} items")
+            print(batch_data)
+            logging.info(batch_data)
             response = requests.post(
                 'http://192.168.111.151:8080/v1/addresses',
                 json=batch_data,
