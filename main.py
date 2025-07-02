@@ -223,8 +223,6 @@ class RabbitConsumer:
 
         headers = {"Content-Type": "application/json"}
         try:
-            print(batch_data)
-            logging.info(batch_data)
             response = requests.post(
                 "http://192.168.111.151:8080/v1/addresses",
                 json=[batch_data],
