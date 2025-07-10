@@ -147,8 +147,8 @@ class RabbitConsumer:
                         "start_time": start_time,
                     }
                 )
-            elif key.startswith("scheme:"):
-                self._handle_login(message)
+            elif key.startswith("scheme:vector"):
+                self._handle_vector(message)
                 channel.basic_ack(method.delivery_tag)
                 PROCESSED_MSG.inc()
                 PROCESS_TIME.observe(time.time() - start_time)
@@ -171,6 +171,23 @@ class RabbitConsumer:
             channel.basic_nack(method.delivery_tag, requeue=False)
             FAILED_MSG.labels(reason="unexpected").inc()
             self._send_to_dlq(body, str(e))
+
+    def _handle_vector(self, message):
+        """
+        Обработка сообщений 'scheme:vector' — триггерит загрузку промтов из Redis в Milvus через /upload_promts_data.
+        """
+        try:
+            response = requests.post(
+                "http://192.168.111.151:8080/upload_promts_data",
+            )
+            if response.status_code != 200:
+                raise TransientError(
+                    f"Ошибка вызова /upload_promts_data: {response.status_code} - {response.text}"
+                )
+            logging.info("Триггер загрузки промтов из Redis в Milvus выполнен успешно.")
+        except Exception as e:
+            logging.error("Ошибка обработки scheme:vector: %s", e)
+            raise TransientError(f"Ошибка обработки scheme:vector: {e}")
 
     def _handle_login(self, message):
         login = message.get("key")[6:]

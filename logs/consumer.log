@@ -1,0 +1,12 @@
+2025-07-10 14:14:46,459 [INFO] Starting consumer
+2025-07-10 14:14:46,460 [INFO] Connecting to RabbitMQ
+2025-07-10 14:14:46,460 [INFO] Pika version 1.3.2 connecting to ('192.168.110.52', 5672)
+2025-07-10 14:14:46,471 [INFO] Socket connected: <socket.socket fd=10, family=2, type=1, proto=6, laddr=('192.168.111.193', 52145), raddr=('192.168.110.52', 5672)>
+2025-07-10 14:14:46,471 [INFO] Streaming transport linked up: (<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x1050a1400>, _StreamingProtocolShim: <SelectConnection PROTOCOL transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x1050a1400> params=<URLParameters host=192.168.110.52 port=5672 virtual_host=/ ssl=False>>).
+2025-07-10 14:14:46,507 [INFO] AMQPConnector - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x1050a1400> params=<URLParameters host=192.168.110.52 port=5672 virtual_host=/ ssl=False>>
+2025-07-10 14:14:46,507 [INFO] AMQPConnectionWorkflow - reporting success: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x1050a1400> params=<URLParameters host=192.168.110.52 port=5672 virtual_host=/ ssl=False>>
+2025-07-10 14:14:46,507 [INFO] Connection workflow succeeded: <SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x1050a1400> params=<URLParameters host=192.168.110.52 port=5672 virtual_host=/ ssl=False>>
+2025-07-10 14:14:46,507 [INFO] Created channel=1
+2025-07-10 14:14:52,560 [INFO] Триггер загрузки промтов из Redis в Milvus выполнен успешно.
+2025-07-10 14:15:04,568 [INFO] Триггер загрузки промтов из Redis в Milvus выполнен успешно.
+2025-07-10 14:15:30,038 [INFO] Batch sent successfully: 100 items
